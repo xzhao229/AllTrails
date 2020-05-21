@@ -1,0 +1,30 @@
+<%- include("../partials/header") %>
+
+<header class="jumbotron">
+    <div class="container">
+        <h1>Welcome AllTrails</h1>
+        <p>View our hand-picked Hiking Trail across the United States</p>
+        <p>
+            <a class="btn btn-primary btn-lg" href="/trails/new">Add New Hiking Trail</a>
+        </p>
+    </div>
+</header>
+
+<div class="row text-center" style="display:flex; flex-wrap: wrap;">
+    <% trails.forEach(function(trail){ %>
+        <div class="col-md-3 col-sm-6">
+            <div class="thumbnail">
+                <img src="<%= trail.image %>">
+                <div class="caption">
+                    <h4><%= trail.name %></h4>
+                </div>
+                <p>
+                    <a href="/trails/<%= trail._id %>" class="btn btn-primary">More Info</a>
+                </p>
+            </div>
+        </div>
+    <% }); %>
+</div>
+
+
+<%- include("../partials/footer") %>
