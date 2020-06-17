@@ -10,13 +10,14 @@ const User = require("./models/user");
 const flash = require("connect-flash");
 
 //requiring routes
+const reviewRoutes  = require("./routes/reviews");
 const commentRoutes = require("./routes/comments");
 const trailRoutes = require("./routes/trails");
 const indexRoutes = require("./routes/index");
 
 //db connectionm
 const port = 3000;
-const MONGO_URI = "mongodb+srv://xzhao229:Wode2013&@xzhao229-jbib8.mongodb.net/YelpCamp?retryWrites=true&w=majority"
+const MONGO_URI = process.env.MONGO_URI;
 app.use(bodyParser.urlencoded({extend:true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
@@ -59,6 +60,7 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/trails", trailRoutes);
 app.use("/trails/:id/comments", commentRoutes);
+app.use("/trails/:id/reviews", reviewRoutes);
 
 app.listen(port, ()=>{
     console.log ("AllTrails server has started")
